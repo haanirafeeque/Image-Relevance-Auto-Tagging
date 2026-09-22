@@ -1,0 +1,17 @@
+run: .venv/Scripts/python.exe -m uvicorn app.main:app --reload
+seed: .venv/Scripts/python.exe scripts/seed_data.py
+test: .venv/Scripts/python.exe -m pytest tests/ -v
+base_url: http://localhost:8000
+endpoints:
+  health: GET /health
+  list_images: GET /images
+  get_image: GET /images/{id}
+  list_posts: GET /posts
+  get_post: GET /posts/{id}
+  match_images: GET /posts/{post_id}/images
+  start_job: POST /jobs/process-images
+  job_status: GET /jobs/{job_id}
+  get_suggestion: GET /suggestions/{suggestion_id}
+  approve_suggestion: POST /suggestions/{suggestion_id}/approve
+  reject_suggestion: POST /suggestions/{suggestion_id}/reject
+  ai_logs: GET /ai-logs
