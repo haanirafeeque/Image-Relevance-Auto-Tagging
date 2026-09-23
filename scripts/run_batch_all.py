@@ -3,7 +3,16 @@ Batch process all pending images through the vision + embedding pipeline.
 Provides live progress output and a final summary.
 """
 
+import os
+import sys
 import time
+from pathlib import Path
+
+# Add project root directory to sys.path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from app.database import run_query, run_execute, run_execute_returning
 from app.jobs import process_image_record
 
