@@ -45,14 +45,12 @@ def evaluate_guard(post: dict, image: dict, similarity: float) -> tuple[str, str
     Returns:
         (guard_status, reason) where guard_status is "approved" or "rejected".
     """
-    # 1. Similarity check
     if similarity < settings.similarity_threshold:
         return (
             "rejected",
             f"Similarity score {similarity:.2f} is below threshold {settings.similarity_threshold:.2f}",
         )
 
-    # 2. Vision confidence check
     confidence = image.get("confidence")
     if confidence is None or confidence < settings.min_vision_confidence:
         conf_str = f"{confidence:.2f}" if confidence is not None else "None"
@@ -61,7 +59,6 @@ def evaluate_guard(post: dict, image: dict, similarity: float) -> tuple[str, str
             f"Vision confidence {conf_str} is below threshold {settings.min_vision_confidence:.2f}",
         )
 
-    # 3. Subject / Category relevance check
     post_title = (post.get("title") or "").lower()
     post_content = (post.get("content") or "").lower()
     post_text = f"{post_title} {post_content}"
@@ -69,7 +66,6 @@ def evaluate_guard(post: dict, image: dict, similarity: float) -> tuple[str, str
     img_category = (image.get("category") or "").lower().strip()
     img_subject = (image.get("subject") or "").lower().strip()
 
-    # Find categories explicitly mentioned in the post title
     title_categories = {
         cat for cat, kws in CATEGORY_KEYWORDS.items()
         if any(kw in post_title for kw in kws)
@@ -77,7 +73,6 @@ def evaluate_guard(post: dict, image: dict, similarity: float) -> tuple[str, str
 
     if title_categories:
         if img_category and img_category not in title_categories:
-            # Check if subject happens to match a title keyword
             has_subject_match = any(
                 kw in img_subject
                 for cat in title_categories
@@ -90,7 +85,6 @@ def evaluate_guard(post: dict, image: dict, similarity: float) -> tuple[str, str
                     f"Subject mismatch: image shows '{img_subject or img_category}' but post is about '{cats_str}'",
                 )
 
-    # If title is broad/general, check full post text
     body_categories = {
         cat for cat, kws in CATEGORY_KEYWORDS.items()
         if any(kw in post_text for kw in kws)
@@ -146,7 +140,6 @@ def match_images_for_post(post_id: int, top_k: int = 5) -> dict:
 
     post_embedding = get_or_create_post_embedding(post_id)
 
-    # Fetch all candidate images that have been processed or have captions
     images = run_query(
         """
         SELECT id, filename, path, subject, category, attributes, caption, confidence, embedding, status, created_at
@@ -169,7 +162,6 @@ def match_images_for_post(post_id: int, top_k: int = 5) -> dict:
         sim = cosine_similarity(post_embedding, img_embedding)
         guard_status, reason = evaluate_guard(post, img, sim)
 
-        # Image dict for response (exclude embedding)
         img_clean = {
             "id": img["id"],
             "filename": img["filename"],
@@ -190,7 +182,6 @@ def match_images_for_post(post_id: int, top_k: int = 5) -> dict:
             "reason": reason,
         })
 
-    # Sort candidates by similarity descending
     candidates.sort(key=lambda c: c["similarity"], reverse=True)
 
     ranked_matches = []
@@ -206,7 +197,6 @@ def match_images_for_post(post_id: int, top_k: int = 5) -> dict:
         }
         ranked_matches.append(ranked_cand)
 
-        # Persist suggestion
         persist_suggestion(
             post_id=post_id,
             image_id=cand["image"]["id"],
@@ -215,7 +205,6 @@ def match_images_for_post(post_id: int, top_k: int = 5) -> dict:
             reason=cand["reason"],
         )
 
-        # First approved candidate is the best match
         if best_match is None and cand["guard_status"] == "approved":
             best_match = ranked_cand
 

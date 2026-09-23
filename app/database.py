@@ -1,11 +1,3 @@
-"""
-Database helper functions — simple wrappers around psycopg.
-
-Every function gets a fresh connection, runs its query, and closes.
-This is simple and works fine for a small project.
-For production you'd use connection pooling, but that's a non-goal here.
-"""
-
 import psycopg
 from app.config import settings
 
@@ -16,7 +8,7 @@ def get_connection():
 
 
 def run_query(sql, params=None):
-    """Run a query that returns rows (SELECT)."""
+    """Run a SELECT query and return all rows as a list of dicts."""
     conn = get_connection()
     try:
         cur = conn.cursor()
@@ -29,15 +21,13 @@ def run_query(sql, params=None):
 
 
 def run_query_one(sql, params=None):
-    """Run a query that returns exactly one row."""
+    """Run a SELECT query and return a single row as a dict, or None."""
     rows = run_query(sql, params)
-    if rows:
-        return rows[0]
-    return None
+    return rows[0] if rows else None
 
 
 def run_execute(sql, params=None):
-    """Run a query that modifies data (INSERT, UPDATE, DELETE). Returns nothing."""
+    """Run an INSERT, UPDATE, or DELETE query."""
     conn = get_connection()
     try:
         cur = conn.cursor()
@@ -48,7 +38,7 @@ def run_execute(sql, params=None):
 
 
 def run_execute_returning(sql, params=None):
-    """Run an INSERT/UPDATE with RETURNING clause. Returns the row as a dict."""
+    """Run an INSERT/UPDATE with RETURNING clause and return the row as a dict."""
     conn = get_connection()
     try:
         cur = conn.cursor()
@@ -65,7 +55,6 @@ def run_migration(filepath):
     """Run a SQL migration file."""
     with open(filepath, "r") as f:
         sql = f.read()
-
     conn = get_connection()
     try:
         cur = conn.cursor()

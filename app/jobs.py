@@ -24,13 +24,11 @@ def process_image_record(image_id: int) -> bool:
     try:
         vision_output = analyze_image(row["path"])
 
-        # Determine status based on confidence threshold
         if vision_output.confidence >= settings.min_vision_confidence:
             status = "processed"
         else:
             status = "low_confidence"
 
-        # Generate embedding for the caption
         embedding_json = None
         if vision_output.caption:
             try:
@@ -87,13 +85,10 @@ def run_batch_processing(job_id: int, limit: Optional[int] = None) -> None:
         run_execute("UPDATE jobs SET status = 'running' WHERE id = %s", (job_id,))
 
         if limit is not None and limit > 0:
-            query = "SELECT id FROM images WHERE status = 'pending' ORDER BY id LIMIT %s"
-            rows = run_query(query, (limit,))
+            rows = run_query("SELECT id FROM images WHERE status = 'pending' ORDER BY id LIMIT %s", (limit,))
         else:
-            query = "SELECT id FROM images WHERE status = 'pending' ORDER BY id"
-            rows = run_query(query)
+            rows = run_query("SELECT id FROM images WHERE status = 'pending' ORDER BY id")
 
-        # Update total count for this job
         run_execute("UPDATE jobs SET total = %s WHERE id = %s", (len(rows), job_id))
 
         for row in rows:

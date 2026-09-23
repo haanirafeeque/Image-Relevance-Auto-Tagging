@@ -51,7 +51,6 @@ def log_ai_call(
 def clean_json_text(text: str) -> str:
     """Clean markdown code fences and extraneous text from JSON response."""
     text = text.strip()
-    # Strip markdown ```json ... ``` code fence if present
     match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", text)
     if match:
         return match.group(1).strip()
@@ -90,14 +89,12 @@ def analyze_image(image_path: str, max_retries: Optional[int] = None) -> VisionO
             )
             duration_ms = int((time.time() - t0) * 1000)
 
-            # Extract token counts
             input_tokens = getattr(response, "prompt_eval_count", None)
             output_tokens = getattr(response, "eval_count", None)
             if input_tokens is None and isinstance(response, dict):
                 input_tokens = response.get("prompt_eval_count")
                 output_tokens = response.get("eval_count")
 
-            # Log the AI call
             log_ai_call(
                 operation="vision",
                 model=settings.vision_model,
@@ -107,7 +104,6 @@ def analyze_image(image_path: str, max_retries: Optional[int] = None) -> VisionO
                 estimated_cost=0.0,
             )
 
-            # Extract and parse content
             raw_content = ""
             if hasattr(response, "message") and hasattr(response.message, "content"):
                 raw_content = response.message.content
@@ -118,8 +114,6 @@ def analyze_image(image_path: str, max_retries: Optional[int] = None) -> VisionO
 
             cleaned = clean_json_text(raw_content)
             data = json.loads(cleaned)
-
-            # Validate against schema
             vision_output = VisionOutput(**data)
             return vision_output
 

@@ -30,7 +30,6 @@ def generate_embedding(text: str) -> list[float]:
         response = client.embeddings(model=settings.embedding_model, prompt=text.strip())
         duration_ms = int((time.time() - t0) * 1000)
 
-        # Log AI call
         log_ai_call(
             operation="embedding",
             model=settings.embedding_model,
