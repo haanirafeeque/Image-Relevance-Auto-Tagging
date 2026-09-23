@@ -1,0 +1,1169 @@
+{
+  "summary": {
+    "total_posts": 12,
+    "matched": 8,
+    "no_confident_match": 4,
+    "match_rate_pct": 66.67,
+    "subject_accuracy_pct": 100.0,
+    "guard_rejection_rate_pct": 89.17,
+    "similarity_min": 0.402,
+    "similarity_avg": 0.4988,
+    "similarity_max": 0.69,
+    "similarity_threshold": 0.4,
+    "min_vision_confidence": 0.6
+  },
+  "results": [
+    {
+      "post_id": 37,
+      "post_title": "The Behavior of Red Foxes in the Wild",
+      "status": "matched",
+      "best_match_filename": "fox_04.jpg",
+      "best_match_similarity": 0.69,
+      "best_match_category": "fox",
+      "expected_categories": [
+        "fox"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 7,
+      "n_approved": 3,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.69,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.6332,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 3,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.5198,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 4,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.3879,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.39 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.3349,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.33 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.3018,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.30 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.2703,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.27 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.2597,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "dog_01.jpg",
+          "category": "dog",
+          "similarity": 0.2508,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "fox_03.jpg",
+          "category": "tree",
+          "similarity": 0.2488,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 38,
+      "post_title": "Understanding Fox Communication and Social Habits",
+      "status": "matched",
+      "best_match_filename": "fox_04.jpg",
+      "best_match_similarity": 0.5046,
+      "best_match_category": "fox",
+      "expected_categories": [
+        "fox"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 8,
+      "n_approved": 2,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.5046,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.4102,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 3,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.3641,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.36 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.3618,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.36 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.2838,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "fox_08.jpg",
+          "category": "panda",
+          "similarity": 0.2831,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "dog_10.jpg",
+          "category": "dog",
+          "similarity": 0.2809,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.2564,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.2465,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "bear_02.jpg",
+          "category": "bear",
+          "similarity": 0.2423,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 39,
+      "post_title": "Gray Wolves: Pack Dynamics and Hunting Strategies",
+      "status": "matched",
+      "best_match_filename": "wolf_02.jpg",
+      "best_match_similarity": 0.5364,
+      "best_match_category": "wolf",
+      "expected_categories": [
+        "wolf"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 9,
+      "n_approved": 1,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.5364,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.3471,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.35 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.3182,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.3181,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.2939,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.29 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "bear_03.jpg",
+          "category": "elephant",
+          "similarity": 0.2646,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "bear_02.jpg",
+          "category": "bear",
+          "similarity": 0.2591,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.2564,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.2494,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "bear_08.jpg",
+          "category": "owl",
+          "similarity": 0.2427,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 40,
+      "post_title": "Wolf Conservation Efforts in North America",
+      "status": "matched",
+      "best_match_filename": "wolf_02.jpg",
+      "best_match_similarity": 0.4209,
+      "best_match_category": "wolf",
+      "expected_categories": [
+        "wolf"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 9,
+      "n_approved": 1,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.4209,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.3098,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.31 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.3064,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.31 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.282,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.2568,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.2493,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.2097,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.21 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "bear_03.jpg",
+          "category": "elephant",
+          "similarity": 0.2054,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.21 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "wolf_01.jpg",
+          "category": "landscape",
+          "similarity": 0.1701,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.17 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "bear_02.jpg",
+          "category": "bear",
+          "similarity": 0.1366,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.14 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 41,
+      "post_title": "Best Dog Breeds for Active Families",
+      "status": "matched",
+      "best_match_filename": "dog_03.jpg",
+      "best_match_similarity": 0.402,
+      "best_match_category": "dog",
+      "expected_categories": [
+        "dog"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 9,
+      "n_approved": 1,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "dog_03.jpg",
+          "category": "dog",
+          "similarity": 0.402,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "dog_01.jpg",
+          "category": "dog",
+          "similarity": 0.392,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.39 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.3857,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.39 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.3343,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.33 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.3274,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.33 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "dog_09.jpg",
+          "category": "dog",
+          "similarity": 0.32,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "dog_10.jpg",
+          "category": "dog",
+          "similarity": 0.3131,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.31 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "wolf_09.jpg",
+          "category": "dog",
+          "similarity": 0.2757,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "dog_02.jpg",
+          "category": "dog",
+          "similarity": 0.2645,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "dog_08.jpg",
+          "category": "dog",
+          "similarity": 0.2629,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 42,
+      "post_title": "Training Your Puppy: A Complete Beginner's Guide",
+      "status": "no_confident_match",
+      "best_match_filename": null,
+      "best_match_similarity": null,
+      "best_match_category": null,
+      "expected_categories": [
+        "dog"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 10,
+      "n_approved": 0,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.2995,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.30 is below threshold 0.40"
+        },
+        {
+          "rank": 2,
+          "filename": "dog_01.jpg",
+          "category": "dog",
+          "similarity": 0.2933,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.29 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.2916,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.29 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "dog_03.jpg",
+          "category": "dog",
+          "similarity": 0.2854,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.29 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "wolf_09.jpg",
+          "category": "dog",
+          "similarity": 0.2759,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.2713,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.27 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "dog_02.jpg",
+          "category": "dog",
+          "similarity": 0.2561,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "dog_09.jpg",
+          "category": "dog",
+          "similarity": 0.2489,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "dog_07.jpg",
+          "category": "dog",
+          "similarity": 0.2368,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "dog_10.jpg",
+          "category": "dog",
+          "similarity": 0.2021,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.20 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 43,
+      "post_title": "Brown Bears: Giants of the Forest",
+      "status": "matched",
+      "best_match_filename": "bear_04.jpg",
+      "best_match_similarity": 0.49,
+      "best_match_category": "bear",
+      "expected_categories": [
+        "bear"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 8,
+      "n_approved": 2,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.49,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "bear_02.jpg",
+          "category": "bear",
+          "similarity": 0.4768,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 3,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.3485,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.35 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.2865,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.29 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.2793,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "bear_03.jpg",
+          "category": "elephant",
+          "similarity": 0.2695,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.27 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.2592,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "bear_08.jpg",
+          "category": "owl",
+          "similarity": 0.2424,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "fox_03.jpg",
+          "category": "tree",
+          "similarity": 0.2413,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.2372,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 44,
+      "post_title": "Bear Safety Tips for Hikers and Campers",
+      "status": "matched",
+      "best_match_filename": "bear_04.jpg",
+      "best_match_similarity": 0.4905,
+      "best_match_category": "bear",
+      "expected_categories": [
+        "bear"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 9,
+      "n_approved": 1,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.4905,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "bear_02.jpg",
+          "category": "bear",
+          "similarity": 0.3651,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.37 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.2816,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.2706,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.27 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.2607,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.2337,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.23 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.1889,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.19 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.1787,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.18 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "bear_03.jpg",
+          "category": "elephant",
+          "similarity": 0.1659,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.17 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "fox_08.jpg",
+          "category": "panda",
+          "similarity": 0.1618,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.16 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 45,
+      "post_title": "The Differences Between Wild Canids: Foxes, Wolves, and Dogs",
+      "status": "no_confident_match",
+      "best_match_filename": null,
+      "best_match_similarity": null,
+      "best_match_category": null,
+      "expected_categories": [
+        "dog",
+        "fox",
+        "wolf"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 10,
+      "n_approved": 0,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.3908,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.39 is below threshold 0.40"
+        },
+        {
+          "rank": 2,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.3753,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.38 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.3702,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.37 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.3667,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.37 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "fox_02.jpg",
+          "category": "fox",
+          "similarity": 0.3222,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.2551,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "dog_10.jpg",
+          "category": "dog",
+          "similarity": 0.253,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.25 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.239,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "dog_01.jpg",
+          "category": "dog",
+          "similarity": 0.2333,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.23 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "dog_07.jpg",
+          "category": "dog",
+          "similarity": 0.2277,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.23 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 46,
+      "post_title": "Wildlife Photography: Capturing Animals in Their Natural Habitat",
+      "status": "no_confident_match",
+      "best_match_filename": null,
+      "best_match_similarity": null,
+      "best_match_category": null,
+      "expected_categories": [],
+      "n_candidates": 10,
+      "n_rejected": 10,
+      "n_approved": 0,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.354,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.35 is below threshold 0.40"
+        },
+        {
+          "rank": 2,
+          "filename": "dog_06.jpg",
+          "category": "dog",
+          "similarity": 0.3523,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.35 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.3486,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.35 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.3328,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.33 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.3317,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.33 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.3143,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.31 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "fox_01.jpg",
+          "category": "fox",
+          "similarity": 0.3138,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.31 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "wolf_08.jpg",
+          "category": "tree",
+          "similarity": 0.305,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.31 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "bear_08.jpg",
+          "category": "owl",
+          "similarity": 0.3042,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.30 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "dog_10.jpg",
+          "category": "dog",
+          "similarity": 0.2812,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.28 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 47,
+      "post_title": "How Polar Bears Adapt to Arctic Conditions",
+      "status": "no_confident_match",
+      "best_match_filename": null,
+      "best_match_similarity": null,
+      "best_match_category": null,
+      "expected_categories": [
+        "bear"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 10,
+      "n_approved": 0,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "bear_02.jpg",
+          "category": "bear",
+          "similarity": 0.3228,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        },
+        {
+          "rank": 2,
+          "filename": "dog_07.jpg",
+          "category": "dog",
+          "similarity": 0.2927,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.29 is below threshold 0.40"
+        },
+        {
+          "rank": 3,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.2561,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "bear_04.jpg",
+          "category": "bear",
+          "similarity": 0.2554,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.26 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "dog_05.jpg",
+          "category": "dog",
+          "similarity": 0.2427,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "dog_08.jpg",
+          "category": "dog",
+          "similarity": 0.2379,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.24 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "fox_04.jpg",
+          "category": "fox",
+          "similarity": 0.2164,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.22 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.2115,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.21 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.2104,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.21 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "dog_03.jpg",
+          "category": "dog",
+          "similarity": 0.2103,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.21 is below threshold 0.40"
+        }
+      ]
+    },
+    {
+      "post_id": 48,
+      "post_title": "The Intelligence and Loyalty of Working Dogs",
+      "status": "matched",
+      "best_match_filename": "wolf_09.jpg",
+      "best_match_similarity": 0.4557,
+      "best_match_category": "dog",
+      "expected_categories": [
+        "dog"
+      ],
+      "n_candidates": 10,
+      "n_rejected": 8,
+      "n_approved": 2,
+      "matches": [
+        {
+          "rank": 1,
+          "filename": "wolf_09.jpg",
+          "category": "dog",
+          "similarity": 0.4557,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 2,
+          "filename": "dog_03.jpg",
+          "category": "dog",
+          "similarity": 0.4023,
+          "guard_status": "approved",
+          "reason": "Passed similarity, vision confidence, and subject relevance checks"
+        },
+        {
+          "rank": 3,
+          "filename": "wolf_06.jpg",
+          "category": "dog",
+          "similarity": 0.3993,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.40 is below threshold 0.40"
+        },
+        {
+          "rank": 4,
+          "filename": "wolf_05.jpg",
+          "category": "dog",
+          "similarity": 0.3701,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.37 is below threshold 0.40"
+        },
+        {
+          "rank": 5,
+          "filename": "dog_04.jpg",
+          "category": "dog",
+          "similarity": 0.3672,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.37 is below threshold 0.40"
+        },
+        {
+          "rank": 6,
+          "filename": "dog_10.jpg",
+          "category": "dog",
+          "similarity": 0.359,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.36 is below threshold 0.40"
+        },
+        {
+          "rank": 7,
+          "filename": "dog_01.jpg",
+          "category": "dog",
+          "similarity": 0.3556,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.36 is below threshold 0.40"
+        },
+        {
+          "rank": 8,
+          "filename": "dog_09.jpg",
+          "category": "dog",
+          "similarity": 0.3459,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.35 is below threshold 0.40"
+        },
+        {
+          "rank": 9,
+          "filename": "dog_02.jpg",
+          "category": "dog",
+          "similarity": 0.3207,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        },
+        {
+          "rank": 10,
+          "filename": "wolf_02.jpg",
+          "category": "wolf",
+          "similarity": 0.3203,
+          "guard_status": "rejected",
+          "reason": "Similarity score 0.32 is below threshold 0.40"
+        }
+      ]
+    }
+  ]
+}

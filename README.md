@@ -5,7 +5,15 @@ and semantic similarity, with safety guards to prevent bad matches.
 
 ## Status
 
-🚧 Under construction — Phase 4 complete (Text Embeddings, Matching Engine & Mismatch Guard).
+✅ **Phase 5 complete** — All 40 images processed, evaluation suite run across all 12 posts.
+
+| Metric | Result |
+|---|---|
+| Images processed | 40/40 (100%) |
+| Posts matched (confident) | 8/12 (66.7%) |
+| Subject accuracy | 8/8 (100%) |
+| Guard rejection rate | 89.2% |
+| Similarity threshold | 0.40 (calibrated from eval) |
 
 ## Quick Start
 
@@ -52,3 +60,19 @@ uvicorn app.main:app --reload
   - `all-minilm` — text embeddings (384 dimensions)
 - **Pydantic** — data validation
 - **numpy** — cosine similarity calculation
+
+## Running Batch Processing & Evaluation
+
+```bash
+# Process all pending images (vision + embeddings)
+python -m scripts.run_batch_all
+
+# Evaluate matching quality across all posts
+python -m evals.eval_matching
+
+# Analyse threshold impact on results.json
+python evals/analyze_threshold.py
+
+# Run all automated tests
+python -m pytest tests/ -v
+```

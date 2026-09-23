@@ -39,7 +39,8 @@ def test_cosine_similarity_zero_vector():
 def test_evaluate_guard_low_similarity():
     post = {"title": "The Behavior of Red Foxes in the Wild", "content": "Foxes are cunning..."}
     image = {"subject": "red fox", "category": "fox", "confidence": 0.95}
-    status, reason = evaluate_guard(post, image, similarity=0.45)
+    # 0.35 is below the calibrated threshold of 0.40
+    status, reason = evaluate_guard(post, image, similarity=0.35)
     assert status == "rejected"
     assert "below threshold" in reason.lower()
 

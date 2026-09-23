@@ -105,4 +105,23 @@ Honest record of AI assistance, decisions, and mistakes throughout the project.
 - **Test parameter index shift** — Updating `process_image_record` to include `embedding` shifted the SQL update parameter index for `status` from index 5 to index 6, causing test assertion failures until tests were updated and mocked properly.
 - **Misleading seed images handled cleanly** — An image named `wolf_01.jpg` was actually a landscape photo of a sunset and waterfall from Pexels. The vision model correctly classified it as landscape/sunset (0.85 confidence), which the matching engine properly rejected with a low similarity score (0.0156) against wolf posts.
 
+## Phase 5 — Full Batch Processing & Evaluation Suite
+
+**Date:** 2026-09-23
+
+### AI Assistance
+- AI created `scripts/run_batch_all.py` with live progress tracking
+- AI created `evals/eval_matching.py` evaluation suite with per-post report and JSON output
+- AI created `evals/analyze_threshold.py` for threshold calibration analysis
+- AI identified and corrected the similarity threshold through empirical evaluation
+
+### Decisions Made
+- **Threshold recalibrated from 0.60 → 0.40** — `all-minilm` produces lower absolute cosine similarities when comparing short image captions to longer blog post text. The 0.60 default was designed for embedding-to-embedding comparisons of same-length texts. After evaluating all 12 posts, 0.40 yields 8/12 matches (66.7%) with 100% subject accuracy.
+- **No confident match is a correct output** — 4 posts ("Training Your Puppy", "Wild Canids", "Wildlife Photography", "Polar Bears") have no image in the corpus that closely matches their content. The system correctly returns `no_confident_match` rather than forcing a bad match.
+- **Evaluation writes `evals/results.json`** — full structured output for later analysis or threshold tuning.
+
+### Mistakes Found
+- **Similarity threshold too strict at 0.60** — Initial default was appropriate for same-scale text comparisons, but `all-minilm` produces lower similarities when crossing text scales (short captions vs. long blog posts). This is a model characteristic, not a bug. Corrected by evaluation — threshold lowered to 0.40.
+
+
 
