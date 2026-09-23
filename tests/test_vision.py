@@ -104,10 +104,12 @@ def test_analyze_image_retry_and_fail(mock_client_cls, tmp_path):
 
 # ---------- Job Processor Unit Tests ----------
 
+@patch("app.jobs.generate_embedding")
 @patch("app.jobs.run_query_one")
 @patch("app.jobs.run_execute")
 @patch("app.jobs.analyze_image")
-def test_process_image_record_processed(mock_analyze, mock_execute, mock_query):
+def test_process_image_record_processed(mock_analyze, mock_execute, mock_query, mock_emb):
+    mock_emb.return_value = [0.1] * 384
     mock_query.return_value = {
         "id": 1,
         "filename": "fox_01.jpg",
@@ -124,17 +126,20 @@ def test_process_image_record_processed(mock_analyze, mock_execute, mock_query):
 
     success = process_image_record(1)
     assert success is True
-    # Verify UPDATE with status='processed'
+    # Verify UPDATE with status='processed' and embedding present
     calls = mock_execute.call_args_list
     assert len(calls) == 1
     args = calls[0][0][1]
-    assert args[5] == "processed"  # status param
+    assert args[5] is not None  # embedding_json
+    assert args[6] == "processed"  # status param
 
 
+@patch("app.jobs.generate_embedding")
 @patch("app.jobs.run_query_one")
 @patch("app.jobs.run_execute")
 @patch("app.jobs.analyze_image")
-def test_process_image_record_low_confidence(mock_analyze, mock_execute, mock_query):
+def test_process_image_record_low_confidence(mock_analyze, mock_execute, mock_query, mock_emb):
+    mock_emb.return_value = [0.1] * 384
     mock_query.return_value = {
         "id": 2,
         "filename": "blurry_01.jpg",
@@ -153,4 +158,4 @@ def test_process_image_record_low_confidence(mock_analyze, mock_execute, mock_qu
     assert success is True
     # Verify status is 'low_confidence'
     args = mock_execute.call_args[0][1]
-    assert args[5] == "low_confidence"
+    assert args[6] == "low_confidence"

@@ -8,6 +8,7 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from app.database import run_query, run_query_one, run_execute_returning
 from app.jobs import run_batch_processing
+from app.matching import match_images_for_post
 
 app = FastAPI(
     title="AI Image Understanding & Content Matching Engine",
@@ -111,4 +112,58 @@ def list_ai_logs(limit: int = 100):
     """List recent AI model calls and cost tracking."""
     rows = run_query("SELECT * FROM ai_call_logs ORDER BY id DESC LIMIT %s", (limit,))
     return {"logs": rows, "count": len(rows)}
+
+
+# --- Matching & Suggestion endpoints ---
+
+
+@app.get("/posts/{post_id}/images")
+def get_post_images(post_id: int, top_k: int = 5):
+    """Match and rank relevant images for a blog post with safety guards."""
+    try:
+        result = match_images_for_post(post_id, top_k=top_k)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@app.get("/suggestions")
+def list_suggestions(limit: int = 50):
+    """List proposed image-post suggestions."""
+    rows = run_query("SELECT * FROM suggestions ORDER BY id DESC LIMIT %s", (limit,))
+    return {"suggestions": rows, "count": len(rows)}
+
+
+@app.get("/suggestions/{suggestion_id}")
+def get_suggestion(suggestion_id: int):
+    """Get a suggestion by ID."""
+    row = run_query_one("SELECT * FROM suggestions WHERE id = %s", (suggestion_id,))
+    if not row:
+        raise HTTPException(status_code=404, detail="Suggestion not found")
+    return row
+
+
+@app.post("/suggestions/{suggestion_id}/approve")
+def approve_suggestion(suggestion_id: int):
+    """Reviewer approves an image suggestion."""
+    row = run_execute_returning(
+        "UPDATE suggestions SET review_status = 'approved' WHERE id = %s RETURNING *",
+        (suggestion_id,),
+    )
+    if not row:
+        raise HTTPException(status_code=404, detail="Suggestion not found")
+    return row
+
+
+@app.post("/suggestions/{suggestion_id}/reject")
+def reject_suggestion(suggestion_id: int):
+    """Reviewer rejects an image suggestion."""
+    row = run_execute_returning(
+        "UPDATE suggestions SET review_status = 'rejected' WHERE id = %s RETURNING *",
+        (suggestion_id,),
+    )
+    if not row:
+        raise HTTPException(status_code=404, detail="Suggestion not found")
+    return row
+
 

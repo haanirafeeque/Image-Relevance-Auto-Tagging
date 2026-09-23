@@ -1,20 +1,18 @@
-"""
-Background job processor for batch image understanding.
-Tracks job status, updates database records, and logs errors.
-"""
-
+import json
 import logging
 from typing import Optional
 from app.config import settings
 from app.database import run_query, run_query_one, run_execute
 from app.vision import analyze_image
+from app.embeddings import generate_embedding
 
 logger = logging.getLogger(__name__)
 
 
 def process_image_record(image_id: int) -> bool:
     """
-    Process a single image record through the vision pipeline and update the database.
+    Process a single image record through the vision and embedding pipeline,
+    and update the database.
 
     Returns True on success (processed or low_confidence), False on failure.
     """
@@ -32,6 +30,15 @@ def process_image_record(image_id: int) -> bool:
         else:
             status = "low_confidence"
 
+        # Generate embedding for the caption
+        embedding_json = None
+        if vision_output.caption:
+            try:
+                emb = generate_embedding(vision_output.caption)
+                embedding_json = json.dumps(emb)
+            except Exception as emb_err:
+                logger.warning("Failed to generate embedding for image %d: %s", image_id, emb_err)
+
         update_sql = """
             UPDATE images
             SET subject = %s,
@@ -39,6 +46,7 @@ def process_image_record(image_id: int) -> bool:
                 attributes = %s,
                 caption = %s,
                 confidence = %s,
+                embedding = %s,
                 status = %s
             WHERE id = %s
         """
@@ -50,6 +58,7 @@ def process_image_record(image_id: int) -> bool:
                 vision_output.attributes,
                 vision_output.caption,
                 vision_output.confidence,
+                embedding_json,
                 status,
                 image_id,
             ),

@@ -79,3 +79,68 @@ def test_ai_logs():
     data = response.json()
     assert "logs" in data
     assert "count" in data
+
+
+@patch("app.main.match_images_for_post")
+def test_get_post_images(mock_match):
+    mock_match.return_value = {
+        "post": {"id": 1, "title": "Fox Post", "content": "Text", "created_at": "2026-09-23T10:00:00"},
+        "matches": [],
+        "best_match": None,
+        "status": "no_confident_match",
+    }
+    response = client.get("/posts/1/images")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "no_confident_match"
+    assert "matches" in data
+
+
+@patch("app.main.match_images_for_post")
+def test_get_post_images_not_found(mock_match):
+    mock_match.side_effect = ValueError("Post 9999 not found")
+    response = client.get("/posts/9999/images")
+    assert response.status_code == 404
+    assert "not found" in response.json()["detail"]
+
+
+@patch("app.main.run_execute_returning")
+@patch("app.main.run_query_one")
+@patch("app.main.run_query")
+def test_suggestion_review_workflow(mock_query, mock_query_one, mock_exec):
+    mock_query.return_value = [
+        {
+            "id": 10,
+            "post_id": 1,
+            "image_id": 2,
+            "similarity": 0.85,
+            "guard_status": "approved",
+            "reason": "OK",
+            "review_status": "pending",
+            "created_at": "2026-09-23T10:00:00",
+        }
+    ]
+    mock_query_one.return_value = mock_query.return_value[0]
+    mock_exec.return_value = {**mock_query.return_value[0], "review_status": "approved"}
+
+    # List suggestions
+    list_res = client.get("/suggestions")
+    assert list_res.status_code == 200
+    assert len(list_res.json()["suggestions"]) == 1
+
+    # Get single suggestion
+    get_res = client.get("/suggestions/10")
+    assert get_res.status_code == 200
+    assert get_res.json()["id"] == 10
+
+    # Approve suggestion
+    appr_res = client.post("/suggestions/10/approve")
+    assert appr_res.status_code == 200
+    assert appr_res.json()["review_status"] == "approved"
+
+    # Reject suggestion
+    mock_exec.return_value = {**mock_query.return_value[0], "review_status": "rejected"}
+    rej_res = client.post("/suggestions/10/reject")
+    assert rej_res.status_code == 200
+    assert rej_res.json()["review_status"] == "rejected"
+

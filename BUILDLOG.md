@@ -84,3 +84,25 @@ Honest record of AI assistance, decisions, and mistakes throughout the project.
 - **Pydantic Settings deprecation** — `class Config: env_file = ".env"` raised deprecation warnings in Pydantic v2. Migrated to `model_config = SettingsConfigDict(env_file=".env", extra="ignore")`.
 - **Cold model load latency** — Initial Ollama vision call took ~52 seconds while weights were being paged into memory; subsequent calls dropped to ~6-16 seconds.
 
+## Phase 4 — Text Embeddings, Matching Engine & Mismatch Guard
+
+**Date:** 2026-09-23
+
+### AI Assistance
+- AI built text embedding generation with Ollama `all-minilm` in `app/embeddings.py` (384 dimensions)
+- AI created matching engine and multi-rule mismatch guard in `app/matching.py`
+- AI updated `app/jobs.py` to embed image captions automatically during batch ingestion
+- AI added suggestion management and review endpoints to `app/main.py`
+- AI created comprehensive test suite in `tests/test_matching.py` and updated `tests/test_api.py`
+
+### Decisions Made
+- **384-dimensional dense vectors** stored as JSON strings in PostgreSQL text columns without requiring pgvector extension.
+- **Multi-rule mismatch guard** — Combines similarity score threshold (0.60), vision model confidence (0.60), and subject/category keyword validation.
+- **No guessing policy** — When no candidate image meets all guardrail requirements, returns `status="no_confident_match"` and `best_match=null`.
+- **Suggestion persistence** — Matching candidates are persisted in the `suggestions` table for human approval/rejection workflows.
+
+### Mistakes Found
+- **Test parameter index shift** — Updating `process_image_record` to include `embedding` shifted the SQL update parameter index for `status` from index 5 to index 6, causing test assertion failures until tests were updated and mocked properly.
+- **Misleading seed images handled cleanly** — An image named `wolf_01.jpg` was actually a landscape photo of a sunset and waterfall from Pexels. The vision model correctly classified it as landscape/sunset (0.85 confidence), which the matching engine properly rejected with a low similarity score (0.0156) against wolf posts.
+
+

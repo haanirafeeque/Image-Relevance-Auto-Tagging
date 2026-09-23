@@ -5,7 +5,7 @@ and semantic similarity, with safety guards to prevent bad matches.
 
 ## Status
 
-🚧 Under construction — Phase 3 complete (Image Understanding & Vision Processing).
+🚧 Under construction — Phase 4 complete (Text Embeddings, Matching Engine & Mismatch Guard).
 
 ## Quick Start
 
@@ -33,9 +33,14 @@ uvicorn app.main:app --reload
 - `GET /images/{id}` — Get single image details
 - `GET /posts` — List all blog posts
 - `GET /posts/{id}` — Get single blog post
+- `GET /posts/{post_id}/images` — Match and rank images for a blog post with safety guardrails
 - `POST /jobs/process-images` — Start batch image understanding job (supports `?limit=N`)
 - `GET /jobs/{job_id}` — Get batch processing job status
 - `GET /jobs` — List all batch processing jobs
+- `GET /suggestions` — List proposed image suggestions
+- `GET /suggestions/{suggestion_id}` — Get a suggestion by ID
+- `POST /suggestions/{suggestion_id}/approve` — Human reviewer approves suggestion
+- `POST /suggestions/{suggestion_id}/reject` — Human reviewer rejects suggestion
 - `GET /ai-logs` — View AI model invocation and token logs
 
 ## Tech Stack
