@@ -4,8 +4,10 @@ FastAPI application — the main entry point.
 Run with: uvicorn app.main:app --reload
 """
 
-from fastapi import FastAPI, HTTPException
-from app.database import run_query, run_query_one
+from typing import Optional
+from fastapi import FastAPI, HTTPException, BackgroundTasks
+from app.database import run_query, run_query_one, run_execute_returning
+from app.jobs import run_batch_processing
 
 app = FastAPI(
     title="AI Image Understanding & Content Matching Engine",
@@ -54,3 +56,59 @@ def get_post(post_id: int):
     if not row:
         raise HTTPException(status_code=404, detail="Post not found")
     return row
+
+
+# --- Job endpoints ---
+
+
+@app.post("/jobs/process-images")
+def start_image_processing_job(background_tasks: BackgroundTasks, limit: Optional[int] = None):
+    """Start batch processing of pending images in the background."""
+    # Count pending images that will be processed
+    if limit is not None and limit > 0:
+        count_row = run_query_one(
+            "SELECT COUNT(*) AS total FROM (SELECT id FROM images WHERE status = 'pending' LIMIT %s) sub",
+            (limit,),
+        )
+    else:
+        count_row = run_query_one("SELECT COUNT(*) AS total FROM images WHERE status = 'pending'")
+
+    total_pending = count_row["total"] if count_row else 0
+
+    insert_sql = """
+        INSERT INTO jobs (status, total, processed, failed)
+        VALUES ('pending', %s, 0, 0)
+        RETURNING id, status, total, processed, failed, created_at
+    """
+    job = run_execute_returning(insert_sql, (total_pending,))
+
+    # Add to background tasks
+    background_tasks.add_task(run_batch_processing, job["id"], limit)
+
+    return job
+
+
+@app.get("/jobs")
+def list_jobs():
+    """List all batch processing jobs."""
+    rows = run_query("SELECT * FROM jobs ORDER BY id DESC")
+    return {"jobs": rows, "count": len(rows)}
+
+
+@app.get("/jobs/{job_id}")
+def get_job_status(job_id: int):
+    """Get the status of a specific batch processing job."""
+    row = run_query_one("SELECT * FROM jobs WHERE id = %s", (job_id,))
+    if not row:
+        raise HTTPException(status_code=404, detail="Job not found")
+    return row
+
+
+# --- AI Call Log endpoints ---
+
+@app.get("/ai-logs")
+def list_ai_logs(limit: int = 100):
+    """List recent AI model calls and cost tracking."""
+    rows = run_query("SELECT * FROM ai_call_logs ORDER BY id DESC LIMIT %s", (limit,))
+    return {"logs": rows, "count": len(rows)}
+

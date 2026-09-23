@@ -6,7 +6,8 @@ so we never send or receive garbage.
 """
 
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, Union
+from datetime import datetime
 
 
 # ---------- Vision output (from AI model) ----------
@@ -33,7 +34,7 @@ class ImageResponse(BaseModel):
     caption: Optional[str] = None
     confidence: Optional[float] = None
     status: str
-    created_at: str
+    created_at: Union[datetime, str]
 
 
 # ---------- Post ----------
@@ -43,7 +44,7 @@ class PostResponse(BaseModel):
     id: int
     title: str
     content: str
-    created_at: str
+    created_at: Union[datetime, str]
 
 
 # ---------- Suggestion ----------
@@ -57,7 +58,7 @@ class SuggestionResponse(BaseModel):
     guard_status: str
     reason: Optional[str] = None
     review_status: str
-    created_at: str
+    created_at: Union[datetime, str]
 
 
 # ---------- Ranked image result ----------
@@ -88,7 +89,7 @@ class JobResponse(BaseModel):
     total: int
     processed: int
     failed: int
-    created_at: str
+    created_at: Union[datetime, str]
 
 
 # ---------- AI log ----------
@@ -102,4 +103,4 @@ class AILogResponse(BaseModel):
     input_tokens: Optional[int] = None
     output_tokens: Optional[int] = None
     estimated_cost: float
-    created_at: str
+    created_at: Union[datetime, str]

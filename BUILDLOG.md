@@ -62,3 +62,25 @@ Honest record of AI assistance, decisions, and mistakes throughout the project.
 - **SQL GROUP BY alias error** — PostgreSQL doesn't allow `GROUP BY alias_name` like MySQL does. Had to repeat the full CASE expression in GROUP BY.
 - **Unicode encoding error** — Windows cp1252 terminal can't print ✓ and ✗ characters. Replaced with ASCII `[OK]` and `[!!]`.
 - **Serial IDs don't reset** — after DELETE + re-INSERT, PostgreSQL SERIAL doesn't restart from 1. API test script had to query actual IDs instead of hardcoding 1.
+
+## Phase 3 — Vision Processing & Image Understanding
+
+**Date:** 2026-09-23
+
+### AI Assistance
+- AI implemented vision processing in `app/vision.py` using Ollama `gemma3:4b` with JSON format and retry logic
+- AI created background batch processing job service in `app/jobs.py`
+- AI added FastAPI endpoints for `POST /jobs/process-images`, `GET /jobs/{job_id}`, `GET /jobs`, and `GET /ai-logs`
+- AI created unit and integration test suite in `tests/test_vision.py` and `tests/test_api.py`
+
+### Decisions Made
+- **Batch processing with FastAPI BackgroundTasks** — sequential execution per job prevents VRAM/GPU contention on the local Ollama instance.
+- **Prompt template externalized** — kept in `prompts/image-understanding-v1.md` rather than hardcoding in Python code.
+- **Token and latency tracking** — `ai_call_logs` records prompt and eval token counts plus elapsed milliseconds for cost/performance monitoring.
+- **Confidence thresholding** — images with confidence < 0.60 are marked as `low_confidence` rather than `processed`.
+
+### Mistakes Found
+- **Pydantic v2 `created_at: str` vs psycopg datetime** — Pydantic v2 rejected Python `datetime.datetime` objects returned by psycopg when typed as `str`. Resolved by updating schema types to `Union[datetime, str]`.
+- **Pydantic Settings deprecation** — `class Config: env_file = ".env"` raised deprecation warnings in Pydantic v2. Migrated to `model_config = SettingsConfigDict(env_file=".env", extra="ignore")`.
+- **Cold model load latency** — Initial Ollama vision call took ~52 seconds while weights were being paged into memory; subsequent calls dropped to ~6-16 seconds.
+

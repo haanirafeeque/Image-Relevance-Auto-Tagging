@@ -5,7 +5,7 @@ All config values come from environment variables so we never
 hardcode secrets in source code.
 """
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -24,8 +24,7 @@ class Settings(BaseSettings):
     # Retry settings
     max_retries: int = 3
 
-    class Config:
-        env_file = ".env"
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
 # Single shared settings instance used across the app
