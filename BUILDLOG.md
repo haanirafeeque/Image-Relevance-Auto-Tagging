@@ -38,3 +38,27 @@ Honest record of AI assistance, decisions, and mistakes throughout the project.
 - Embeddings stored as JSON text in PostgreSQL (no pgvector needed at this scale)
 - Cosine similarity computed in Python with numpy
 - Background processing uses FastAPI BackgroundTasks (no Celery/Redis)
+
+## Phase 2 — Database & Seed Data
+
+**Date:** 2026-09-23
+
+### AI Assistance
+- AI generated the SQL migration (001_create_tables.sql)
+- AI created database.py helper functions
+- AI created Pydantic schemas (schemas.py)
+- AI generated the seed script with Pexels image URLs
+- AI added image and post listing endpoints to main.py
+
+### Decisions Made
+- **5 tables** — images, posts, suggestions, jobs, ai_call_logs
+- **Simple SQL** — no ORM, just psycopg with parameterized queries
+- **run_query / run_execute pattern** — each function gets a fresh connection
+- **Pexels images** — free license, 400px width for small download size
+- **Idempotent seed** — checks for duplicates before inserting
+
+### Mistakes Found
+- **8 Pexels URLs were 404** — many Pexels photo IDs no longer exist. Had to test and replace URLs iteratively until all 40 images downloaded.
+- **SQL GROUP BY alias error** — PostgreSQL doesn't allow `GROUP BY alias_name` like MySQL does. Had to repeat the full CASE expression in GROUP BY.
+- **Unicode encoding error** — Windows cp1252 terminal can't print ✓ and ✗ characters. Replaced with ASCII `[OK]` and `[!!]`.
+- **Serial IDs don't reset** — after DELETE + re-INSERT, PostgreSQL SERIAL doesn't restart from 1. API test script had to query actual IDs instead of hardcoding 1.
