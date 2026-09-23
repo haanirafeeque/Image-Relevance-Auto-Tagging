@@ -16,20 +16,7 @@ Built with **FastAPI**, **PostgreSQL**, and local **Ollama** models (no cloud AP
 
 ---
 
-## Results
 
-| Metric | Result |
-|---|---|
-| Images processed | **40 / 40** (100%, 0 failures) |
-| Posts matched (confident) | **8 / 12** (66.7%) |
-| Subject accuracy on matches | **8 / 8** (100%) |
-| Guard rejection rate | 89.2% |
-| Automated tests | **32 / 32** passing |
-| Similarity threshold | 0.40 (calibrated via eval suite) |
-
-The 4 unmatched posts (puppy training, wildlife photography, polar bears, multi-canid comparison) correctly return `no_confident_match` — the corpus has no relevant image for those topics, and the system avoids forcing a bad match.
-
----
 
 ## Project Structure
 
